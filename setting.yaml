@@ -1,0 +1,17 @@
+VERSION : v0.1
+SERVER_IP : localhost
+SERVER_NAME : sleepingtree
+
+#数据库常量配置
+USER_SALT_LENGTH : 4
+PAGE_LIMIT : 10
+DEFAULT_PAGE : 1
+
+#字符串编码格式
+STRING_CODE : utf-8
+#加密方式名
+ENCRYPTION_SHA1 : sha1
+#token过期时间配置
+TOKEN_EXPIRE: 7200
+#token重新获取提前时间
+TOKEN_AHEAD: 3600
