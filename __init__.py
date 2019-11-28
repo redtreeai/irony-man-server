@@ -94,4 +94,6 @@ from controller.admin import sys_menu
 from controller.admin import sys_user
 from controller.admin import sys_role_menu
 
+from controller.wechat import wechat_user
+from controller.wechat import check_login
 
