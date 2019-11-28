@@ -11,11 +11,11 @@ from service.wechat import wechat_user_manager
 from utils.http import responser
 
 
-@app.route('/update_userinfo', endpoint='update_userinfo',methods=['POST'])
+@app.route('/wechat_update_userinfo', endpoint='wechat_update_userinfo',methods=['POST'])
 def update_userinfo():
     """
-    @api {post} /update_userinfo 更新用户数据到服务端(首次登录或过期后登录调用)
-    @apiName wechat.update_userinfo
+    @api {post} /wechat_update_userinfo 更新用户数据到服务端(首次登录或过期后登录调用)
+    @apiName wechat.wechat_update_userinfo
     @apiGroup wechat
     @apiVersion 1.0.0
 
@@ -43,11 +43,11 @@ def update_userinfo():
 
 
 
-@app.route('/get_user_data', endpoint='get_user_data',methods=['POST'])
+@app.route('/wechat_get_user_data', endpoint='wechat_get_user_data',methods=['POST'])
 def get_user_data():
     """
-    @api {post} /wechat_checklogin 获取服务端的用户信息
-    @apiName wechat.wechat_checklogin
+    @api {post} /wechat_get_user_data 获取服务端的用户信息
+    @apiName wechat.wechat_get_user_data
     @apiGroup wechat
     @apiVersion 1.0.0
 
