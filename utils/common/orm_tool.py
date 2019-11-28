@@ -8,22 +8,17 @@
 def var2json ():
     var_data = '''
     
-zfid = Column(Integer, primary_key=True)
-    app_code = Column(String(50))  # app代码
-    qa_code = Column(String(50))  # 语料代码
-    question = Column(Text)  # 输入
-    answer = Column(Text)  # 输出
-    created_time = Column(Integer)
-    updated_time = Column(Integer)
-    updated_user_id = Column(String(20))  # 更新信息的用户id
-    org_code = Column(String(50))  # 机构代码
-    org_name = Column(String(50))  # 机构名称
-    app_user_id = Column(String(50))
-    app_user_sex = Column(String(10))
-    app_user_name = Column(String(50))
-    app_user_phone = Column(String(50))
-
-
+ zfid = Column(Integer, primary_key=True)
+    uid = Column(String(50))  #用户unionid
+    nickname = Column(String(50))  #用户昵称
+    avatar = Column(Text)  #头像
+    gender = Column(Integer) #0:保密，1：男，2：女
+    province = Column(String(50)) #省份
+    city = Column(String(50)) #省份
+    country = Column(String(50)) #省份
+    is_vip = Column(Integer) #0不是1是
+    vip_time = Column(Integer) #vip到期时间
+    updated_time = Column(Integer) #纪录更新时间
     '''
 
     lines = var_data.split('\n')

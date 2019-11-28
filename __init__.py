@@ -34,6 +34,10 @@ setting = yaml.load(open('setting.yaml'))
 VERSION = setting['VERSION']
 SERVER_IP = setting['SERVER_IP']
 
+#小程序信息配置
+WECHAT_APPID = setting['WECHAT_APPID']
+WECHAT_APPSECRET = setting['WECHAT_APPSECRET']
+
 # 数据库常量配置
 PAGE_LIMIT = int(setting['PAGE_LIMIT'])
 DEFAULT_PAGE = int(setting['DEFAULT_PAGE'])
