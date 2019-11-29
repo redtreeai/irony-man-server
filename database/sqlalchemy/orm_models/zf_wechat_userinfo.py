@@ -9,8 +9,8 @@ from __init__ import Base_xxcxb
 from sqlalchemy import (Column, String, Integer, Text)
 
 
-class Zf_wechat_user_info(Base_xxcxb):
-    __tablename__ = 'zf_wechat_user_info'
+class Zf_wechat_userinfo(Base_xxcxb):
+    __tablename__ = 'zf_wechat_userinfo'
 
     zfid = Column(Integer, primary_key=True)
     openid = Column(String(50))  # 用户unionid

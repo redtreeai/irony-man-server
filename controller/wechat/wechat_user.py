@@ -12,7 +12,7 @@ from utils.http import responser
 
 
 @app.route('/wechat_update_userinfo', endpoint='wechat_update_userinfo',methods=['POST'])
-def update_userinfo():
+def wechat_update_userinfo():
     """
     @api {post} /wechat_update_userinfo 更新用户数据到服务端(首次登录或过期后登录调用)
     @apiName wechat.wechat_update_userinfo
@@ -44,7 +44,7 @@ def update_userinfo():
 
 
 @app.route('/wechat_get_user_data', endpoint='wechat_get_user_data',methods=['POST'])
-def get_user_data():
+def wechat_get_user_data():
     """
     @api {post} /wechat_get_user_data 获取服务端的用户信息
     @apiName wechat.wechat_get_user_data

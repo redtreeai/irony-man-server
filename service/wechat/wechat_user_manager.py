@@ -5,7 +5,9 @@
 # @Desc :   用户信息操作
 
 from __init__ import DBSession_xxcxb,PAGE_LIMIT,USER_SALT_LENGTH
-from database.sqlalchemy.orm_models.zf_wechat_userinfo import Zf_wechat_user_info
+from __init__ import redis_client
+from utils.common import redisor
+from database.sqlalchemy.orm_models.zf_wechat_userinfo import Zf_wechat_userinfo
 import time
 from utils.http import responser
 import json
@@ -35,12 +37,12 @@ def update_userinfo(openid,nickname,avatar,gender,province,city,country):
         session = DBSession_xxcxb()
         ctime = int(time.time())
         try:
-            info = session.query(Zf_wechat_user_info).filter(Zf_wechat_user_info.openid == openid).one()
+            info = session.query(Zf_wechat_userinfo).filter(Zf_wechat_userinfo.openid == openid).one()
             #记录已存在则更新
-            info = session.query(Zf_wechat_user_info).filter(Zf_wechat_user_info.openid == openid).update(
-                {Zf_wechat_user_info.nickname: nickname, Zf_wechat_user_info.avatar: avatar, Zf_wechat_user_info.gender: gender,
-                 Zf_wechat_user_info.province: province, Zf_wechat_user_info.city: city, Zf_wechat_user_info.country: country,
-                 Zf_wechat_user_info.updated_time:ctime})
+            info = session.query(Zf_wechat_userinfo).filter(Zf_wechat_userinfo.openid == openid).update(
+                {Zf_wechat_userinfo.nickname: nickname, Zf_wechat_userinfo.avatar: avatar, Zf_wechat_userinfo.gender: gender,
+                 Zf_wechat_userinfo.province: province, Zf_wechat_userinfo.city: city, Zf_wechat_userinfo.country: country,
+                 Zf_wechat_userinfo.updated_time:ctime})
             if not info == 0 and not info == '':
                 session.commit()
                 session.close()
@@ -50,7 +52,7 @@ def update_userinfo(openid,nickname,avatar,gender,province,city,country):
         except:
             #否则创建
             try:
-                info = session.add(Zf_wechat_user_info(openid=str(openid), nickname=str(nickname), avatar=str(avatar),
+                info = session.add(Zf_wechat_userinfo(openid=str(openid), nickname=str(nickname), avatar=str(avatar),
                                                        gender=int(gender),province=str(province),city=str(city),country=str(country),
                                                        is_vip=0,vip_time=0,
                                                        created_time=int(ctime),
@@ -59,6 +61,10 @@ def update_userinfo(openid,nickname,avatar,gender,province,city,country):
                 if not info == 0 and not info == '':
                         session.commit()
                         session.close()
+                        # 异步更新redis会员状态
+                        rkey = 'wx_'+openid
+                        robj = {'is_vip':0,'times':0}
+                        redisor.update_redis_kv(redis_client,rkey,json.dumps(robj))
                         return responser.send(10000, 'success')
 
                 session.close()
@@ -77,7 +83,7 @@ def get_user_data(openid):
     try:
         session = DBSession_xxcxb()
         try:
-            info = session.query(Zf_wechat_user_info).filter(Zf_wechat_user_info.openid == openid).one()
+            info = session.query(Zf_wechat_userinfo).filter(Zf_wechat_userinfo.openid == openid).one()
             DB_data = json.loads(str(info))  # 需要强转字符串才能序列化
 
             session.close()
@@ -87,6 +93,5 @@ def get_user_data(openid):
             return responser.send(40002)
     except:
         return responser.send(40002)
-
 
 
