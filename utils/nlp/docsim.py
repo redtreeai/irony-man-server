@@ -75,7 +75,7 @@ def response(text,qa_dict, docsim_Dictionary, docsim_Similarity):
             return nice_responese()
 
     except Exception as e:
-        return 'error'
+        return nice_responese()
 
 
 #和谐回复
