@@ -89,6 +89,7 @@ def get_param_check(request, param_list):
         else:
             return 'error', send(50002, no_match_list)
     except Exception as e:
+        print(e)
         return 'error', send(20003)
 
 
@@ -103,6 +104,7 @@ def post_param_check(request,param_list):
         else:
             return 'error', send(50002, no_match_list)
     except Exception as e:
+        print(e)
         return 'error', send(20003)
 
 
