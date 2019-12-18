@@ -19,17 +19,16 @@ def check_login(code):
         url = 'https://api.weixin.qq.com/sns/jscode2session?appid=' + WECHAT_APPID + '&secret=' + WECHAT_APPSECRET + '&js_code=' + code + '&grant_type=authorization_code'
         r = requests.get(url)
         res = json.loads(r.text)
-        print(res)
-        errcode = res['errcode']
-
-        if errcode == 0:
+        try:
+            # 捕捉到异常则打印错误信息
+            errcode = res['errcode']
+            print(res)
+            return responser.send(80001)
+        except:
+            #无异常则解析
             openid = res['openid']
             session_key = res['session_key']
-            unionid = res['unionid']
-            errmsg = res['errmsg']
             return responser.send(10000, '登录成功')
-        else:
-            return responser.send(80001)
     except:
         return responser.send(80001)
 
