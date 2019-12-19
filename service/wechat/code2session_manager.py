@@ -28,6 +28,7 @@ def check_login(code):
             #无异常则解析
             openid = res['openid']
             session_key = res['session_key']
+            res = {'openid':openid,'session_key':session_key}
             return responser.send(10000, '登录成功')
     except:
         return responser.send(80001)
