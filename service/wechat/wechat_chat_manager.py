@@ -77,7 +77,7 @@ def chat(openid,input_text):
         #第一个版本不做限制
         res_text = mvp_auto_qa(input_text)
         #检索对应的表情包
-        res_img = ''
+        res_img = get_img(res_text)
         res = {'text':res_text,'img':res_img}
         return responser.send(10000, res)
 
@@ -110,5 +110,9 @@ def chat(openid,input_text):
     except:
         return responser.send(10000, nice_responese())
 
-
+def get_img(text):
+    if text =='不能让爱情耽误我发财':
+        return 'https://robotapi.chenhongshu.com/bqb/love.jpg'
+    else:
+        return ''
 #使用redis操作交流状态
