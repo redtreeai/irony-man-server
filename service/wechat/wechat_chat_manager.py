@@ -75,9 +75,9 @@ def chat(openid,input_text):
 
     try:
         #第一个版本不做限制
-        res_text = mvp_auto_qa(input_text)
+        text = mvp_auto_qa(input_text)
         #检索对应的表情包
-        res_img = get_img(res_text)
+        res_text,res_img = get_img(text)
         res = {'text':res_text,'img':res_img}
         return responser.send(10000, res)
 
@@ -108,11 +108,13 @@ def chat(openid,input_text):
         #             redisor.update_redis_kv(redis_client,rkey,robj)
         #             return responser.send(10000, res)
     except:
-        return responser.send(10000, nice_responese())
+        res = {'text':nice_responese(),'img':''}
+
+        return responser.send(10000, res)
 
 def get_img(text):
     if text =='不能让爱情耽误我发财':
-        return 'https://robotapi.chenhongshu.com/bqb/love.jpg'
+        return '','https://robotapi.chenhongshu.com/bqb/love.jpg'
     else:
-        return ''
+        return text,''
 #使用redis操作交流状态
