@@ -64,7 +64,7 @@ def wechat_upload_jianyi():
 
     res_status, rjson = responser.post_param_check(request, ['openid', 'nickname', 'jianyi'])
     if res_status == 'success':
-        return wechat_advice_manager.upload_yuliao(rjson['openid'], rjson['nickname'], rjson['jianyi'])
+        return wechat_advice_manager.upload_jianyi(rjson['openid'], rjson['nickname'], rjson['jianyi'])
     else:
         return rjson
 
