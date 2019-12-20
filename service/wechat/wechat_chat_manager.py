@@ -75,7 +75,10 @@ def chat(openid,input_text):
 
     try:
         #第一个版本不做限制
-        res = mvp_auto_qa(input_text)
+        res_text = mvp_auto_qa(input_text)
+        #检索对应的表情包
+        res_img = ''
+        res = {'text':res_text,'img':res_img}
         return responser.send(10000, res)
 
         # #获取会员状态
