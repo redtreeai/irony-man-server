@@ -74,7 +74,7 @@ def payment(openid):  #统一下单
         res = {'package': package, 'paysign': paysign, 'timestamp': ctime,
                                'nonceStr': nonceStr, 'appId': appid}
 
-        #后面记得补上
+        #后面记得补上,保存订单和更新用户vip信息
         # order_res = '这里调用数据库订单创建的逻辑'
         #
         # if not order_res == 'success':
