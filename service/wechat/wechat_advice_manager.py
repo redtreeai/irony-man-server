@@ -6,9 +6,8 @@
 
 
 from __init__ import DBSession_xxcxb,PAGE_LIMIT,USER_SALT_LENGTH
-from __init__ import redis_client
-from utils.common import redisor
 from database.sqlalchemy.orm_models.zf_wechat_yuliao import Zf_wechat_yuliao
+from database.sqlalchemy.orm_models.zf_wechat_jianyi import Zf_wechat_jianyi
 import time
 from utils.http import responser
 import json
@@ -47,7 +46,7 @@ def upload_jianyi(openid, nickname, jianyi):
         ctime = int(time.time())
 
         try:
-            info = session.add(Zf_wechat_yuliao(openid=str(openid), nickname=str(nickname), jianyi=str(jianyi),
+            info = session.add(Zf_wechat_jianyi(openid=str(openid), nickname=str(nickname), jianyi=str(jianyi),
                                                 created_time=int(ctime),
                                                 updated_time=int(ctime)))
 
