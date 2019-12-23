@@ -36,3 +36,31 @@ def wechat_chat():
         return wechat_chat_manager.chat(rjson['openid'],rjson['input_text'])
     else:
         return rjson
+
+
+
+@app.route('/wechat_chat_welcome', endpoint='wechat_chat_welcome',methods=['POST'])
+def wechat_chat_welcome():
+    """
+    @api {post} /wechat_chat_welcome 机器人欢迎消息
+    @apiName wechat.wechat_chat
+    @apiGroup wechat
+    @apiVersion 1.0.0
+
+    @apiParam {string} openid
+
+    @apiSuccessExample Example data on success:
+    {
+        "code": 10000,
+        "msg": "操作成功",
+        "data": {
+           'text':'我劝你商量',
+           'img':'表情包图片地址'  #先图片后文字的顺序，空的就不发
+        }
+    }
+    """
+    res_status,rjson = responser.post_param_check(request,['openid'])
+    if res_status == 'success':
+        return wechat_chat_manager.get_welcome(rjson['openid'])
+    else:
+        return rjson

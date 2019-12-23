@@ -117,4 +117,20 @@ def get_img(text):
         return '','https://robotapi.chenhongshu.com/bqb/love.jpg'
     else:
         return text,''
+
+
+def get_welcome(openid):
+
+    try:
+        standar_url = 'https://robotapi.chenhongshu.com/bqb/'
+        tag = random.randint(1, 26)
+        img_url = standar_url + tag + '.jpg'
+        text = '我劝你善良'
+        res = {'text':text,'img':img_url}
+        return responser.send(10000, res)
+    except:
+        text = '我劝你善良'
+        res = {'text':text,'img':''}
+        return responser.send(10000,res)
+
 #使用redis操作交流状态
