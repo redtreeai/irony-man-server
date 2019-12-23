@@ -120,11 +120,10 @@ def get_img(text):
 
 
 def get_welcome(openid):
-
     try:
         standar_url = 'https://robotapi.chenhongshu.com/bqb/'
         tag = random.randint(1, 26)
-        img_url = standar_url + tag + '.jpg'
+        img_url = standar_url + str(tag) + '.jpg'
         text = '我劝你善良'
         res = {'text':text,'img':img_url}
         return responser.send(10000, res)
