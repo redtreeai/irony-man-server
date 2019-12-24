@@ -150,12 +150,12 @@ def auto_fuck(openid):
         if not info1 == 0 and not info1 == '':
             fuck_text = info1[0].question
             session.close()
-            return fuck_text
+            return responser.send(10000,fuck_text)
 
         session.close()
-        return False
+        return responser.send(10000,'你牙齿上有韭菜')
     except Exception as err:
         print(err)
-        return False
+        return responser.send(10000,'你牙齿上有韭菜')
 
 #使用redis操作交流状态
