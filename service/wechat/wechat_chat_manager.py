@@ -124,11 +124,11 @@ def get_welcome(openid):
         standar_url = 'https://robotapi.chenhongshu.com/bqb/'
         tag = random.randint(1, 26)
         img_url = standar_url + str(tag) + '.jpg'
-        text = '我劝你善良'
+        text = '使劲儿骂，别客气'
         res = {'text':text,'img':img_url}
         return responser.send(10000, res)
     except:
-        text = '我劝你善良'
+        text = '狠狠骂，别客气'
         res = {'text':text,'img':''}
         return responser.send(10000,res)
 
