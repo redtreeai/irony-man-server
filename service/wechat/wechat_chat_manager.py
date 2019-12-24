@@ -10,10 +10,12 @@ from __init__ import DBSession_xxcxb,PAGE_LIMIT
 from __init__ import redis_client
 from utils.nlp import docsim
 from utils.common import redisor
+import json
 from database.sqlalchemy.orm_models.zf_nlp_qa import Zf_nlp_qa
 from utils.http import responser
 import random
-import json
+from sqlalchemy import func
+
 
 #登录后更新数据
 '''
@@ -37,6 +39,8 @@ def get_qa_dict(qa_code):
             for inf in info:
                 c_obj = (inf.question, inf.answer)
                 c_list.append(c_obj)
+
+            session.close()
             return c_list
     except Exception as err:
         print(err)
@@ -113,10 +117,14 @@ def chat(openid,input_text):
         return responser.send(10000, res)
 
 def get_img(text):
-    if text =='不能让爱情耽误我发财':
-        return '','https://robotapi.chenhongshu.com/bqb/love.jpg'
+    if text.__contains__('||'):
+        spl = text.split('||')
+        text = spl[0]
+        img = spl[1]
+        return text,img
     else:
         return text,''
+
 
 
 def get_welcome(openid):
@@ -131,5 +139,23 @@ def get_welcome(openid):
         text = '使劲儿骂我，别客气，只吵架，不闲聊'
         res = {'text':text,'img':''}
         return responser.send(10000,res)
+
+
+
+def auto_fuck(openid):
+    try:
+        session = DBSession_xxcxb()
+        info1 = session.query(Zf_nlp_qa).filter(Zf_nlp_qa.qa_code == 'mvp').order_by(
+            func.rand()).limit(1).all()
+        if not info1 == 0 and not info1 == '':
+            fuck_text = info1[0].question
+            session.close()
+            return fuck_text
+
+        session.close()
+        return False
+    except Exception as err:
+        print(err)
+        return False
 
 #使用redis操作交流状态
