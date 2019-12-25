@@ -14,7 +14,7 @@ from utils.http import responser
 @app.route('/wechat_chat_index_bannar', endpoint='wechat_chat_index_bannar',methods=['GET'])
 def wechat_chat_index_bannar():
     """
-    @api {post} /wechat_chat_index_bannar 获取首页bannar信息
+    @api {get} /wechat_chat_index_bannar 获取首页bannar信息
     @apiName wechat.wechat_chat
     @apiGroup wechat
     @apiVersion 1.0.0
@@ -44,7 +44,7 @@ def wechat_chat_index_bannar():
 @app.route('/wechat_chat_index_gonggao', endpoint='wechat_chat_index_gonggao',methods=['GET'])
 def wechat_chat_index_gonggao():
     """
-    @api {post} /wechat_chat_index_gonggao 获取首页公告（通知）信息
+    @api {get} /wechat_chat_index_gonggao 获取首页公告（通知）信息
     @apiName wechat.wechat_chat
     @apiGroup wechat
     @apiVersion 1.0.0
