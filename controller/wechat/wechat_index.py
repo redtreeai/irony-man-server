@@ -39,3 +39,27 @@ def wechat_chat_index_bannar():
     else:
         return rjson
 
+
+
+@app.route('/wechat_chat_index_gonggao', endpoint='wechat_chat_index_gonggao',methods=['GET'])
+def wechat_chat_index_gonggao():
+    """
+    @api {post} /wechat_chat_index_gonggao 获取首页公告（通知）信息
+    @apiName wechat.wechat_chat
+    @apiGroup wechat
+    @apiVersion 1.0.0
+
+    @apiParam {string} openid
+
+    @apiSuccessExample Example data on success:
+    {
+        "code": 10000,
+        "msg": "操作成功",
+        "data": '图片地址,没有的话则显示展无公告'
+    }
+    """
+    res_status,rjson = responser.get_param_check(request,['openid'])
+    if res_status == 'success':
+        return wechat_index_manager.get_gonggao(rjson['openid'])
+    else:
+        return rjson

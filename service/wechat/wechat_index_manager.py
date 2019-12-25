@@ -16,3 +16,13 @@ def get_bannars(open_id):
         return responser.send(10000, resl)
     except:
         return responser.send(10000,[])
+
+
+
+def get_gonggao(open_id):
+    try:
+        standar_url = 'https://robotapi.chenhongshu.com/bqb/'
+        img = standar_url + 'gonggao.jpg'
+        return responser.send(10000, img)
+    except:
+        return responser.send(10000, '')
