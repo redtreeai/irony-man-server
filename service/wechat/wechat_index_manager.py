@@ -6,6 +6,7 @@
 
 from utils.http import responser
 
+
 def get_bannars(open_id):
     try:
         standar_url = 'https://robotapi.chenhongshu.com/bqb/'
@@ -23,6 +24,8 @@ def get_gonggao(open_id):
     try:
         standar_url = 'https://robotapi.chenhongshu.com/bqb/'
         img = standar_url + 'gonggao.jpg'
-        return responser.send(10000, img)
+        res =  {'gonggao_tag':1,'img':img}
+        return responser.send(10000, res)
     except:
-        return responser.send(10000, '')
+        res =  {'gonggao_tag':1,'img':''}
+        return responser.send(10000, res)

@@ -55,8 +55,10 @@ def wechat_chat_index_gonggao():
     {
         "code": 10000,
         "msg": "操作成功",
-        "data": '图片地址,没有的话则显示展无公告'
+        "data": {'gonggao_tag':1,'img':'图片地址'
+        }
     }
+    #gonggao_tag存本地localstorage,当返回的值与本地不同的时候，添加图标感叹号题型，img是公告图片地址
     """
     res_status,rjson = responser.get_param_check(request,['openid'])
     if res_status == 'success':
