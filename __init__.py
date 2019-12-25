@@ -99,4 +99,5 @@ from controller.wechat import check_login
 from controller.wechat import wechat_advice
 from controller.wechat import wechat_chat
 from controller.wechat import wechat_pay
+from controller.wechat import wechat_index
 

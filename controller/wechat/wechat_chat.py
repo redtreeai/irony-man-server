@@ -82,8 +82,6 @@ def wechat_chat_autofuck():
         "code": 10000,
         "msg": "操作成功",
         "data": {
-           'text':'我劝你商量',
-           'img':'表情包图片地址'  #先图片后文字的顺序，空的就不发
         }
     }
     """
@@ -92,3 +90,5 @@ def wechat_chat_autofuck():
         return wechat_chat_manager.auto_fuck(rjson['openid'])
     else:
         return rjson
+
+
