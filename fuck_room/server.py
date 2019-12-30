@@ -64,6 +64,8 @@ async def counter(websocket, path):
         finally:
             await unregister(websocket)
 
+print('启动聊天室服务器')
 asyncio.get_event_loop().run_until_complete(
     websockets.serve(counter, '0.0.0.0',6789))
 asyncio.get_event_loop().run_forever()
+print('启动完毕')
