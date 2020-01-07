@@ -4,3 +4,4 @@ Sqlalchemy
 Gunicorn
 Gevent
 redis
+websockets
