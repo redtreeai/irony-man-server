@@ -59,6 +59,8 @@ def payment(openid):  #统一下单
         r = requests.post(all_pay_url, data=pay_xml.encode('utf-8'),
                            headers=headers)
 
+        print(r)
+        print(r.text)
         xml_recv = ET.fromstring(r.text)
         wxre_sign = xml_recv.find('sign').text  #用来校验签名认证
 
