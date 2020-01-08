@@ -61,6 +61,8 @@ def payment(openid):  #统一下单
 
         print(r.text)
         xml_recv = ET.fromstring(r.text)
+        print(xml_recv.find('return_msg').text)
+        print(xml_recv.find('return_code').text)
         print(xml_recv)
         wxre_sign = xml_recv.find('sign').text  #用来校验签名认证
         print(wxre_sign)
