@@ -59,10 +59,12 @@ def payment(openid):  #统一下单
         r = requests.post(all_pay_url, data=pay_xml.encode('utf-8'),
                            headers=headers)
 
-        print(r)
         print(r.text)
         xml_recv = ET.fromstring(r.text)
+        print(xml_recv)
         wxre_sign = xml_recv.find('sign').text  #用来校验签名认证
+        print(wxre_sign)
+        print('w')
 
         prepay_id = xml_recv.find('prepay_id').text
         package = "prepay_id=" + prepay_id
